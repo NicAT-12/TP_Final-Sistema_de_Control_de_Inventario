@@ -38,3 +38,23 @@ def cargar_herramientas(inventario):
                 print(f"Error: {error}")
 
     inventario.append({'herramienta': nombre_herramienta_ingresada, 'cantidad': stock_herramienta_ingresada})
+
+def mostrar_inventario(inventario):
+    if not inventario:
+        print("No hay herramientas cargadas en el inventario")
+    else:
+        print("=== Inventario Actual ===")
+        for herramienta in inventario:
+            print(f"Nombre: {herramienta['herramienta']} | Stock: {herramienta['cantidad']}")
+
+def consultar_stock(inventario):
+    nombre_de_herramienta_consultado = input("Ingrese el nombre de la herramienta a consultar: ")
+    encontrada = False
+
+    for herramienta in inventario:
+        if herramienta['herramienta'] == nombre_de_herramienta_consultado:
+            print(f"Stock de {herramienta['herramienta']} es {herramienta['cantidad']}")
+            encontrada = True
+
+    if not encontrada:
+        print(f"{nombre_de_herramienta_consultado} no se encontró")
