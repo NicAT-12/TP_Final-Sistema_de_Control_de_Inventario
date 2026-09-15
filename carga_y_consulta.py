@@ -58,3 +58,25 @@ def consultar_stock(inventario):
 
     if not encontrada:
         print(f"{nombre_de_herramienta_consultado} no se encontró")
+
+def alta_producto(inventario):
+    nombre_producto_ingresado = input("Ingresar el nombre del producto: ")
+
+    try:
+        stock_producto_ingresado = int(input("Ingresar el stock del producto: "))
+    except ValueError:
+        raise ValueError("Error, ingrese un numero valido.")
+
+    duplicado = False
+    for herramienta in inventario:
+        if herramienta['herramienta'] == nombre_producto_ingresado:
+            duplicado = True
+
+    if not nombre_producto_ingresado:
+        raise ValueError("Error ingrese un nombre valido")
+    elif duplicado:
+        raise ValueError("Error el producto ya existe")
+    elif stock_producto_ingresado < 0:
+        raise ValueError("Error el stock no puede ser negativo")
+    else:
+        inventario.append({'herramienta': nombre_producto_ingresado, 'cantidad': stock_producto_ingresado})
